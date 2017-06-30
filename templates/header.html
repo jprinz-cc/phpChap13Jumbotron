@@ -1,4 +1,5 @@
 <?php
+ob_start();
 
 include('includes/functions.php');
 
@@ -87,6 +88,11 @@ include('includes/functions.php');
                                     print "class=\"active\"";
                                 }
                                 print '><a href="index.php">Home</a></li>';
+                                print '<li ';
+                                if(page_check('register.php')){
+                                    print "class=\"active\"";
+                                }
+                                print '><a href="register.php">Register</a></li>';
 
                             }
 

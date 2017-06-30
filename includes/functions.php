@@ -12,9 +12,24 @@ function is_administrator($name = 'Samuel', $value ='Clemens') {
 
     }
 
-
-
 } // End of is_administrator
+
+
+function page_check($check){
+
+    if(strpos($_SERVER['REQUEST_URI'], $check)){
+
+        return true;
+
+    } else {
+
+        return false;
+
+    }
+
+}
+
+
 if (!isset($logging_out)){
 
     $logging_out = false;
@@ -24,16 +39,6 @@ if (!isset($logging_out)){
 if(!isset($loggedin)){
 
     $loggedin = false;
-
-}
-
-function page_check($check){
-
-    if(strpos($_SERVER['REQUEST_URI'], $check)){
-        return true;
-    } else {
-        return false;
-    }
 
 }
 

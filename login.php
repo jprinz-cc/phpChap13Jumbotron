@@ -1,21 +1,40 @@
 <?php
-$loggedin = false;
 $error = false;
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
-        if ( (strtolower($_POST['email']) == 'me@example.com') && ($_POST ['password'] == 'testpass') ) {
 
-            setcookie('Samuel', 'Clemens', time()+3600);
-            $loggedin = true;
+        include('includes/mysqli_connect.php');
 
+        $query = "SELECT email, password FROM quote_users WHERE email = '{$_POST['email']}'";
 
-         } else { // Incorrect!
+        $result = mysqli_query($dbc, $query);
 
-            $error = 'The submitted email address and password do not match those on file!';
+        if (mysqli_num_rows($result) == 1) {
+
+            while ($row = mysqli_fetch_array($result)) {
+                if ($row['password'] == sha1($_POST['password'])){
+
+                    setcookie('Samuel', 'Clemens', time()+3600);
+                    $loggedin = true;
+
+                } else {
+
+                    $error = 'Your email address or password could not be verified, please try again!';
+
+                }
+
+            }
+
+        } else {
+
+            $error = 'Your email address or password could not be verified, please try again!';
 
         }
+
+        mysqli_close($dbc);
 
     } else { // Forgot a field.
 

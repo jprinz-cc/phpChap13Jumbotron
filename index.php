@@ -39,7 +39,7 @@ if ($r = mysqli_query($dbc, $query)) {
 
 
     if (is_administrator()) {
-        print "<p><b>Quote Admin:</b> <a href=\"edit_quote.php?id={$row['id']}\">Edit</a>  |  <a href=\"delete_quote.php?id={$row['id']}\">Delete</a></p>\n";
+        print "<p><b>Quote Admin:</b> <a href=\"edit_quote.php?id={$row['id']}\" class=\"btn\">Edit</a>  |  <a href=\"delete_quote.php?id={$row['id']}\" class=\"btn\">Delete</a></p>\n";
     }
 
 } else {
